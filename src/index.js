@@ -3,20 +3,22 @@
 
 const toDoArray = [];
 
-const generateID = () => Math.floor(Math.random() * 10000);
+
+
 class ToDo {
-  constructor(description, completed) {
+  constructor(description, completed = false) {
     this.description = description;
     this.completed = completed;
-    this.id = generateID();
+    
   }
 
   addTodo() {
     toDoArray.push(this);
+    this.index = toDoArray.indexOf(this);
   }
 
   deleteToDo() {
-    toDoArray.splice(toDoArray.indexOf(this.id), 1);
+    toDoArray.splice(this.index, 1);
     return toDoArray;
   }
 
