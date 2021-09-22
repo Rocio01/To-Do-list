@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
+  mode: 'development',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -11,11 +12,12 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Output Management',
+      template: './src/index.html',
     }),
   ],
 
   devServer: {
-     static: './dist',
+    static: './dist',
   },
 
   module: {
@@ -31,4 +33,5 @@ module.exports = {
 
     ],
   },
+
 };
