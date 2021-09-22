@@ -4,23 +4,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const toDoArray = [];
 
 class ToDo {
-  constructor(description, completed = false) {
+  constructor(description, completed = false, index) {
     this.description = description;
     this.completed = completed;
+    this.index = index;
   }
 
-  addTodo() {
-    toDoArray.push(this);
-    this.index = toDoArray.indexOf(this);
+  static addTodo(todo, arr) {
+    arr.push(todo);
+    todo.index = arr.indexOf(todo);
   }
 
-  deleteToDo() {
-    toDoArray.splice(this.index, 1);
-    return toDoArray;
+  static deleteToDo(todo, arr) {
+    arr.splice(todo.index, 1);
+    return arr;
   }
 
-  changeStatus() {
-    this.completed = !this.completed;
+  static changeStatus(todo) {
+    todo.completed = !todo.completed;
   }
 }
 
@@ -31,16 +32,11 @@ const addTodoLs = (todo) => {
   } else {
     todos = JSON.parse(localStorage.getItem('todos'));
   }
-  todos.push(todo);
+
+  ToDo.addTodo(todo, todos);
+
   localStorage.setItem('todos', JSON.stringify(todos));
 };
-
-const firstTask = new ToDo('do breakfast', true);
-firstTask.addTodo();
-const secondTask = new ToDo('morning session');
-secondTask.addTodo();
-const thirdTask = new ToDo('lunch');
-thirdTask.addTodo();
 
 const listContainer = document.querySelector('.list-container');
 const input = document.querySelector('#add-todo-input');
@@ -52,8 +48,8 @@ form.addEventListener('submit', () => {
   addTodoLs(newTodo);
 });
 
-const displayTodos = () => {
-  toDoArray.forEach((todo) => {
+const displayTodos = (arr) => {
+  arr.forEach((todo) => {
     const li = document.createElement('li');
 
     li.innerHTML = `<li class="list-group-item">
@@ -65,4 +61,14 @@ const displayTodos = () => {
   });
 };
 
-displayTodos();
+const getTodosls = () => {
+  let todos;
+  if (localStorage.getItem('todos') === null) {
+    todos = toDoArray;
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+  displayTodos(todos);
+};
+
+getTodosls();
