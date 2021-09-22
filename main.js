@@ -140,13 +140,43 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
+/***/ "./src/display.js":
+/*!************************!*\
+  !*** ./src/display.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ displayTodos)\n/* harmony export */ });\nconst listContainer = document.querySelector('.list-container');\n\nconst displayTodos = (arr) => {\n  arr.forEach((todo) => {\n    const li = document.createElement('li');\n\n    li.innerHTML = `<li class=\"list-group-item\">\n                  <input class=\"form-check-input me-1\" type=\"checkbox\" value=\"\" aria-label=\"...\">\n                  ${todo.description}\n                  </li>`;\n\n    listContainer.appendChild(li);\n  });\n};\n\n\n\n\n//# sourceURL=webpack://webpack-boilerplate/./src/display.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ \"./node_modules/bootstrap/dist/css/bootstrap.min.css\");\n\n\n\nconst toDoArray = [{ description: 'breakfast', completed: 'true', index: 0 }, { description: 'lunch', completed: 'false', index: 1 }];\nconst listContainer = document.querySelector('.list-container');\nconst input = document.querySelector('#add-todo-input');\nconst form = document.querySelector('#add-todo');\n\nclass ToDo {\n  constructor(description, completed = false, index) {\n    this.description = description;\n    this.completed = completed;\n    this.index = index;\n  }\n\n  addTodo() {\n    toDoArray.push(this);\n    this.index = toDoArray.indexOf(this);\n  }\n\n  deleteToDo() {\n    toDoArray.splice(this.index, 1);\n    return toDoArray;\n  }\n\n  changeStatus() {\n    this.completed = !this.completed;\n  }\n}\n\n// construction of the three object to populate the toDoArray to see class functionality\n\nconst third = new ToDo('Go to the bank');\nthird.addTodo();\n\nconst displayTodos = (arr) => {\n  arr.forEach((todo) => {\n    const li = document.createElement('li');\n\n    li.innerHTML = `<li class=\"list-group-item\">\n                  <input class=\"form-check-input me-1\" type=\"checkbox\" value=\"\" aria-label=\"...\">\n                  ${todo.description}\n                  </li>`;\n\n    listContainer.appendChild(li);\n  });\n};\n\nconst addTodoLs = (todo) => {\n  let todos;\n  if (localStorage.getItem('todos') === null) {\n    todos = [];\n  } else {\n    todos = JSON.parse(localStorage.getItem('todos'));\n  }\n\n  todos.push(todo);\n  todo.index = todos.indexOf(todo);\n\n  localStorage.setItem('todos', JSON.stringify(todos));\n};\n\nform.addEventListener('submit', () => {\n  const description = input.value;\n  const newTodo = new ToDo(description);\n  addTodoLs(newTodo);\n});\n\nconst getTodosls = () => {\n  let todos;\n  if (localStorage.getItem('todos') === null) {\n    todos = [];\n  } else {\n    todos = JSON.parse(localStorage.getItem('todos'));\n  }\n  displayTodos(todos);\n};\n\n// Display of the toDoArray for the first milestone\ndisplayTodos(toDoArray);\n\ngetTodosls();\n\n\n//# sourceURL=webpack://webpack-boilerplate/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ \"./node_modules/bootstrap/dist/css/bootstrap.min.css\");\n/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./todo */ \"./src/todo.js\");\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./storage */ \"./src/storage.js\");\n\n\n\n\n\nconst input = document.querySelector('#add-todo-input');\nconst form = document.querySelector('#add-todo');\n\nform.addEventListener('submit', () => {\n  const description = input.value;\n  const newTodo = new _todo__WEBPACK_IMPORTED_MODULE_2__[\"default\"](description);\n  (0,_storage__WEBPACK_IMPORTED_MODULE_3__.addTodoLs)(newTodo);\n});\n\n(0,_storage__WEBPACK_IMPORTED_MODULE_3__.getTodosls)();\n\n\n//# sourceURL=webpack://webpack-boilerplate/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/storage.js":
+/*!************************!*\
+  !*** ./src/storage.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addTodoLs\": () => (/* binding */ addTodoLs),\n/* harmony export */   \"getTodosls\": () => (/* binding */ getTodosls)\n/* harmony export */ });\n/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo */ \"./src/todo.js\");\n/* harmony import */ var _display__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./display */ \"./src/display.js\");\n\n\n\nconst addTodoLs = (todo) => {\n  let todos;\n  if (localStorage.getItem('todos') === null) {\n    todos = [];\n  } else {\n    todos = JSON.parse(localStorage.getItem('todos'));\n  }\n\n  _todo__WEBPACK_IMPORTED_MODULE_0__[\"default\"].addTodo(todo, todos);\n\n  localStorage.setItem('todos', JSON.stringify(todos));\n};\n\nconst getTodosls = () => {\n  let todos;\n  if (localStorage.getItem('todos') === null) {\n    todos = [];\n  } else {\n    todos = JSON.parse(localStorage.getItem('todos'));\n  }\n  (0,_display__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(todos);\n};\n\n\n\n\n//# sourceURL=webpack://webpack-boilerplate/./src/storage.js?");
+
+/***/ }),
+
+/***/ "./src/todo.js":
+/*!*********************!*\
+  !*** ./src/todo.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ ToDo)\n/* harmony export */ });\nclass ToDo {\n  constructor(description, completed = false, index) {\n    this.description = description;\n    this.completed = completed;\n    this.index = index;\n  }\n\n  static addTodo(todo, arr) {\n    arr.push(todo);\n    todo.index = arr.indexOf(todo);\n  }\n\n  static deleteToDo(todo, arr) {\n    arr.splice(todo.index, 1);\n    return arr;\n  }\n\n  static changeStatus(todo) {\n    todo.completed = !todo.completed;\n  }\n}\n\n\n\n\n//# sourceURL=webpack://webpack-boilerplate/./src/todo.js?");
 
 /***/ }),
 
