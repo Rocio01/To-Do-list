@@ -2,6 +2,9 @@ import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const toDoArray = [];
+const listContainer = document.querySelector('.list-container');
+const input = document.querySelector('#add-todo-input');
+const form = document.querySelector('#add-todo');
 
 class ToDo {
   constructor(description, completed = false, index) {
@@ -37,10 +40,6 @@ const addTodoLs = (todo) => {
 
   localStorage.setItem('todos', JSON.stringify(todos));
 };
-
-const listContainer = document.querySelector('.list-container');
-const input = document.querySelector('#add-todo-input');
-const form = document.querySelector('#add-todo');
 
 form.addEventListener('submit', () => {
   const description = input.value;
