@@ -24,6 +24,17 @@ class ToDo {
   }
 }
 
+const addTodoLs = (todo) => {
+  let todos;
+  if (localStorage.getItem('todos') === null) {
+    todos = toDoArray;
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+  todos.push(todo);
+  localStorage.setItem('todos', JSON.stringify(todos));
+};
+
 const firstTask = new ToDo('do breakfast', true);
 firstTask.addTodo();
 const secondTask = new ToDo('morning session');
@@ -32,6 +43,14 @@ const thirdTask = new ToDo('lunch');
 thirdTask.addTodo();
 
 const listContainer = document.querySelector('.list-container');
+const input = document.querySelector('#add-todo-input');
+const form = document.querySelector('#add-todo');
+
+form.addEventListener('submit', () => {
+  const description = input.value;
+  const newTodo = new ToDo(description);
+  addTodoLs(newTodo);
+});
 
 const displayTodos = () => {
   toDoArray.forEach((todo) => {
