@@ -1,7 +1,7 @@
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const toDoArray = [];
+const toDoArray = [{ description: 'breakfast', completed: 'true', index: 0 }, { description: 'lunch', completed: 'false', index: 1 }];
 const listContainer = document.querySelector('.list-container');
 const input = document.querySelector('#add-todo-input');
 const form = document.querySelector('#add-todo');
@@ -13,39 +13,25 @@ class ToDo {
     this.index = index;
   }
 
-  static addTodo(todo, arr) {
-    arr.push(todo);
-    todo.index = arr.indexOf(todo);
+  addTodo() {
+    toDoArray.push(this);
+    this.index = toDoArray.indexOf(this);
   }
 
-  static deleteToDo(todo, arr) {
-    arr.splice(todo.index, 1);
-    return arr;
+  deleteToDo() {
+    toDoArray.splice(this.index, 1);
+    return toDoArray;
   }
 
-  static changeStatus(todo) {
-    todo.completed = !todo.completed;
+  changeStatus() {
+    this.completed = !this.completed;
   }
 }
 
-const addTodoLs = (todo) => {
-  let todos;
-  if (localStorage.getItem('todos') === null) {
-    todos = toDoArray;
-  } else {
-    todos = JSON.parse(localStorage.getItem('todos'));
-  }
+// construction of the three object to populate the toDoArray to see class functionality
 
-  ToDo.addTodo(todo, todos);
-
-  localStorage.setItem('todos', JSON.stringify(todos));
-};
-
-form.addEventListener('submit', () => {
-  const description = input.value;
-  const newTodo = new ToDo(description);
-  addTodoLs(newTodo);
-});
+const third = new ToDo('Go to the bank');
+third.addTodo();
 
 const displayTodos = (arr) => {
   arr.forEach((todo) => {
@@ -60,14 +46,37 @@ const displayTodos = (arr) => {
   });
 };
 
+const addTodoLs = (todo) => {
+  let todos;
+  if (localStorage.getItem('todos') === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+
+  todos.push(todo);
+  todo.index = todos.indexOf(todo);
+
+  localStorage.setItem('todos', JSON.stringify(todos));
+};
+
+form.addEventListener('submit', () => {
+  const description = input.value;
+  const newTodo = new ToDo(description);
+  addTodoLs(newTodo);
+});
+
 const getTodosls = () => {
   let todos;
   if (localStorage.getItem('todos') === null) {
-    todos = toDoArray;
+    todos = [];
   } else {
     todos = JSON.parse(localStorage.getItem('todos'));
   }
   displayTodos(todos);
 };
+
+// Display of the toDoArray for the first milestone
+displayTodos(toDoArray);
 
 getTodosls();
