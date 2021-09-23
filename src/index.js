@@ -21,7 +21,12 @@ const checkboxes = document.querySelectorAll('.check');
 checkboxes.forEach((check) => {
   check.addEventListener('change', function () {
     if (this.checked) {
-      let toDo = toDosArr[this.id];
+      const toDo = toDosArr[this.id];
+      ToDo.changeStatus(toDo);
+      updateTodosLs(toDo);
+    }
+    else if(!this.checked) {      
+      const toDo = toDosArr[this.id];
       ToDo.changeStatus(toDo);
       updateTodosLs(toDo);
     }
