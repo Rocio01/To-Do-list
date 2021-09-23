@@ -21,7 +21,7 @@ const getTodosls = () => {
   } else {
     todos = JSON.parse(localStorage.getItem('todos'));
   }
-  return todos
+  return todos;
 };
 
 export { addTodoLs, getTodosls };

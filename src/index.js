@@ -2,7 +2,7 @@ import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ToDo from './todo';
 import { addTodoLs, getTodosls } from './storage';
-import displayTodos from "./display"
+import displayTodos from './display';
 
 const input = document.querySelector('#add-todo-input');
 const form = document.querySelector('#add-todo');
@@ -13,5 +13,15 @@ form.addEventListener('submit', () => {
   addTodoLs(newTodo);
 });
 
-let toDosArr = getTodosls();
-displayTodos(toDosArr)
+const toDosArr = getTodosls();
+displayTodos(toDosArr);
+
+const checkboxes = document.querySelectorAll('.check');
+
+checkboxes.forEach((check) => {
+  check.addEventListener('change', function () {
+    if (this.checked) {
+      alert(this.id);
+    }
+  });
+});

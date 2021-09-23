@@ -5,7 +5,7 @@ const displayTodos = (arr) => {
     const li = document.createElement('li');
 
     li.innerHTML = `<li class="list-group-item">
-                  <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                  <input class="form-check-input me-1 check" id="${todo.index}" type="checkbox" value="" aria-label="...">
                   ${todo.description}
                   </li>`;
 
