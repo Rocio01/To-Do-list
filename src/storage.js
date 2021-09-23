@@ -1,5 +1,4 @@
 import ToDo from './todo';
-import displayTodos from './display';
 
 const addTodoLs = (todo) => {
   let todos;
@@ -24,4 +23,15 @@ const getTodosls = () => {
   return todos;
 };
 
-export { addTodoLs, getTodosls };
+const updateTodosLs = (todo) => {
+  let todos;
+  if (localStorage.getItem('todos') === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+  todos[todo.index] = todo;
+  localStorage.setItem('todos', JSON.stringify(todos));
+};
+
+export { addTodoLs, getTodosls, updateTodosLs };

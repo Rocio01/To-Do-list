@@ -1,7 +1,7 @@
 import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ToDo from './todo';
-import { addTodoLs, getTodosls } from './storage';
+import { addTodoLs, getTodosls, updateTodosLs } from './storage';
 import displayTodos from './display';
 
 const input = document.querySelector('#add-todo-input');
@@ -21,7 +21,9 @@ const checkboxes = document.querySelectorAll('.check');
 checkboxes.forEach((check) => {
   check.addEventListener('change', function () {
     if (this.checked) {
-      alert(this.id);
+      let toDo = toDosArr[this.id];
+      ToDo.changeStatus(toDo);
+      updateTodosLs(toDo);
     }
   });
 });
