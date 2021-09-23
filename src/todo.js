@@ -18,6 +18,10 @@ class ToDo {
   static changeStatus(todo) {
     todo.completed = !todo.completed;
   }
+
+  static changeDescription(todo, newDescription) {
+    todo.description = newDescription;
+  }
 }
 
 export { ToDo as default };
