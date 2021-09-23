@@ -2,6 +2,7 @@ import './style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ToDo from './todo';
 import { addTodoLs, getTodosls } from './storage';
+import displayTodos from "./display"
 
 const input = document.querySelector('#add-todo-input');
 const form = document.querySelector('#add-todo');
@@ -12,4 +13,5 @@ form.addEventListener('submit', () => {
   addTodoLs(newTodo);
 });
 
-getTodosls();
+let toDosArr = getTodosls();
+displayTodos(toDosArr)
