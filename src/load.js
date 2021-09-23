@@ -19,11 +19,11 @@ const loadEventListeners = () => {
 
   checkboxes.forEach((check) => {
     check.addEventListener('change', function () {
-      if (this.checked) {
+      if (this.checked === true) {
         const toDo = toDosArr[this.id];
         ToDo.changeStatus(toDo);
         updateTodosLs(toDo);
-      } else if (!this.checked) {
+      } else {
         const toDo = toDosArr[this.id];
         ToDo.changeStatus(toDo);
         updateTodosLs(toDo);
