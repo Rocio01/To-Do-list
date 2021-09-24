@@ -34,4 +34,31 @@ const updateTodosLs = (todo) => {
   localStorage.setItem('todos', JSON.stringify(todos));
 };
 
-export { addTodoLs, getTodosls, updateTodosLs };
+const deleteTodoLS = (todo) => {
+  let todos;
+  if (localStorage.getItem('todos') === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+  const todoIndex = todos.findIndex((x) => todo.index === x.index);
+  todos.splice(todoIndex, 1);
+  localStorage.setItem('todos', JSON.stringify(todos));
+};
+
+const clearLs = () => {
+  let todos;
+  if (localStorage.getItem('todos') === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+
+  const notCompletedTodos = todos.filter((x) => x.completed === false);
+  todos = notCompletedTodos;
+  localStorage.setItem('todos', JSON.stringify(todos));
+};
+
+export {
+  addTodoLs, getTodosls, updateTodosLs, deleteTodoLS, clearLs,
+};
