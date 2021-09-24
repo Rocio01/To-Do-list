@@ -33,19 +33,26 @@ const loadEventListeners = () => {
   });
 
   spans.forEach((span) => {
-    const description = span.textContent;
+    const oldDescription = span.textContent;
 
     span.addEventListener('click', function (e) {
       this.style.display = 'none';
       const newSpan = document.createElement('span');
-      newSpan.innerHTML = `<form class="edit-todo w-25">
-                           <input class="form-control list-group" id="add-todo-input" type="text"  placeholder="${description}" required>
-                           </form>`;
-
+      const editForm = document.createElement('form');
+      const inputEdit = document.createElement('input');
+      inputEdit.type = 'text';
+      inputEdit.placeholder = oldDescription;
+      inputEdit.className = `${oldDescription}`;
+      editForm.appendChild(inputEdit);
+      newSpan.appendChild(editForm);
       (e.target.parentElement).appendChild(newSpan);
 
-      (newSpan.firstChild).addEventListener('submit', () => {
-        alert('hello');
+      editForm.addEventListener('submit', function () {
+        const newDescription = inputEdit.value;
+        const indexC = this.parentElement.previousElementSibling.previousElementSibling.id;
+        const todo = toDosArr.find((x) => x.index == indexC);
+        ToDo.changeDescription(todo, newDescription);
+        updateTodosLs(todo);
       });
     });
   });
