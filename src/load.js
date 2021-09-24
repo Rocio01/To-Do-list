@@ -42,7 +42,8 @@ const loadEventListeners = () => {
       const inputEdit = document.createElement('input');
       inputEdit.type = 'text';
       inputEdit.placeholder = oldDescription;
-      inputEdit.className = `${oldDescription}`;
+      inputEdit.className = 'edit-form';
+      editForm.required = true;
       editForm.appendChild(inputEdit);
       newSpan.appendChild(editForm);
       (e.target.parentElement).appendChild(newSpan);
@@ -50,10 +51,19 @@ const loadEventListeners = () => {
       editForm.addEventListener('submit', function () {
         const newDescription = inputEdit.value;
         const indexC = this.parentElement.previousElementSibling.previousElementSibling.id;
-        const todo = toDosArr.find((x) => x.index == indexC);
+        const todo = toDosArr.find((x) => (x.index) === Math.floor(indexC));
         ToDo.changeDescription(todo, newDescription);
         updateTodosLs(todo);
       });
+
+      if (newSpan !== null) {
+        window.onclick = function (e) {
+          if (newSpan !== e.target && span !== e.target && inputEdit !== e.target) {
+            newSpan.style.display = 'none';
+            window.location.reload();
+          }
+        };
+      }
     });
   });
 };
