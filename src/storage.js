@@ -46,6 +46,19 @@ const deleteTodoLS = (todo) => {
   localStorage.setItem('todos', JSON.stringify(todos));
 };
 
+const clearLs = () => {
+  let todos;
+  if (localStorage.getItem('todos') === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+
+  const notCompletedTodos = todos.filter((x) => x.completed === false);
+  todos = notCompletedTodos;
+  localStorage.setItem('todos', JSON.stringify(todos));
+};
+
 export {
-  addTodoLs, getTodosls, updateTodosLs, deleteTodoLS,
+  addTodoLs, getTodosls, updateTodosLs, deleteTodoLS, clearLs,
 };

@@ -1,6 +1,6 @@
 import ToDo from './todo';
 import {
-  addTodoLs, getTodosls, updateTodosLs, deleteTodoLS,
+  addTodoLs, getTodosls, updateTodosLs, deleteTodoLS, clearLs,
 } from './storage';
 import displayTodos from './display';
 
@@ -71,9 +71,9 @@ const loadEventListeners = () => {
   });
 
   ellipsis.forEach((ellipsy) => {
-    // ellipsy.parentElement.addEventListener("mouseover", function(){
-    //   this.style.background = "beige"
-    // })
+    ellipsy.parentElement.addEventListener("mouseover", function(){
+      this.style.background = "beige"
+    })
 
     ellipsy.addEventListener('click', () => {
       ellipsy.firstChild.style.display = 'none';
@@ -94,6 +94,14 @@ const loadEventListeners = () => {
       }
     });
   });
+
+  const clear = document.querySelector('.clear');
+  if (clear !== null) {
+    clear.addEventListener('click', () => {
+      clearLs();
+      window.location.reload();
+    });
+  }
 };
 
 export { loadEventListeners as default };
