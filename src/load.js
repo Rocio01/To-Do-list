@@ -71,8 +71,11 @@ const loadEventListeners = () => {
   });
 
   ellipsis.forEach((ellipsy) => {
-    ellipsy.parentElement.addEventListener("mouseover", function(){
+    ellipsy.parentElement.addEventListener("mouseenter", function(){
       this.style.background = "beige"
+    })
+    ellipsy.parentElement.addEventListener("mouseleave", function(){
+      this.style.background = "white"
     })
 
     ellipsy.addEventListener('click', () => {
