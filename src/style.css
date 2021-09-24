@@ -3,36 +3,29 @@ ul {
   color: rgb(46, 46, 46);
 }
 
-
-
-.ellipsis, .span-delete{
+.ellipsis,
+.span-delete {
   float: right;
 }
 
-.span-text{
+.span-text {
   width: 100px;
 }
 
-
 .delete {
   display: none;
-  
 }
 
-.delete-right{
+.delete-right {
   float: right;
 }
 
-.clear{
+.clear {
   text-decoration: none;
   border: blanchedalmond;
-  
 }
 
-.underline{
+.underline {
   text-decoration: underline;
   border: blanchedalmond;
 }
-
-
-
