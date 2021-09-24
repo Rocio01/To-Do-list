@@ -71,21 +71,25 @@ const loadEventListeners = () => {
   });
 
   ellipsis.forEach((ellipsy) => {
-    ellipsy.parentElement.addEventListener("mouseenter", function(){
-      this.style.background = "beige"
-    })
-    ellipsy.parentElement.addEventListener("mouseleave", function(){
-      this.style.background = "white"
-    })
+    const spanDelete = document.createElement('span');
+    spanDelete.className = 'span-delete';
+    const deleteIcon = document.createElement('i');
+    deleteIcon.className = 'far fa-trash-alt delete-right';
+    ellipsy.parentElement.appendChild(spanDelete);
+    spanDelete.appendChild(deleteIcon);
+    spanDelete.style.display = 'none';
 
-    ellipsy.addEventListener('click', () => {
+    ellipsy.parentElement.addEventListener('mouseleave', () => {
+      spanDelete.style.display = 'none';
+      ellipsy.firstChild.style.display = 'block';
+      ellipsy.parentElement.style.background = 'white';
+    });
+
+    ellipsy.parentElement.addEventListener('mouseenter', () => {
       ellipsy.firstChild.style.display = 'none';
-      const spanDelete = document.createElement('span');
-      const deleteIcon = document.createElement('i');
-      deleteIcon.className = 'far fa-trash-alt delete-right';
-      spanDelete.appendChild(deleteIcon);
+      spanDelete.style.display = 'block';
 
-      ellipsy.parentElement.appendChild(spanDelete);
+      ellipsy.parentElement.style.background = '#f9ecc5';
 
       if (deleteIcon !== null) {
         spanDelete.addEventListener('click', function () {
@@ -100,6 +104,12 @@ const loadEventListeners = () => {
 
   const clear = document.querySelector('.clear');
   if (clear !== null) {
+    clear.addEventListener('mouseenter', function () {
+      this.className = 'underline';
+    });
+    clear.addEventListener('mouseleave', function () {
+      this.className = 'clear';
+    });
     clear.addEventListener('click', () => {
       clearLs();
       window.location.reload();

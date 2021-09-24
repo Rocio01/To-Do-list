@@ -5,7 +5,7 @@ ul {
 
 
 
-.ellipsis{
+.ellipsis, .span-delete{
   float: right;
 }
 
@@ -16,10 +16,22 @@ ul {
 
 .delete {
   display: none;
+  
 }
 
 .delete-right{
   float: right;
+}
+
+.clear{
+  text-decoration: none;
+  border: blanchedalmond;
+  
+}
+
+.underline{
+  text-decoration: underline;
+  border: blanchedalmond;
 }
 
 
