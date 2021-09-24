@@ -46,7 +46,7 @@ const loadEventListeners = () => {
       inputEdit.type = 'text';
       inputEdit.placeholder = oldDescription;
       inputEdit.className = 'edit-form';
-      editForm.required = true;
+      inputEdit.required = true;
       editForm.appendChild(inputEdit);
       newSpan.appendChild(editForm);
       (e.target.parentElement).appendChild(newSpan);

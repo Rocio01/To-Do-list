@@ -10,12 +10,12 @@ const displayTodos = (arr) => {
   divButton.appendChild(clearButton);
   arr.forEach((todo) => {
     const li = document.createElement('li');
-    li.className = 'list-item-todo';
+    li.className = 'list-item-todo ';
     if (todo.completed === true) {
-      li.innerHTML = `<li class="list-group-item text-decoration-line-through class-${todo.index}">
+      li.innerHTML = `<li class="list-group-item text-decoration-line-through class-${todo.index} ">
       <input class="form-check-input me-1 check " id="${todo.index}" type="checkbox"  checked value="" onClick="window.location.reload()" >
-      <span class="span-text class-${todo.index}"> ${todo.description} </span>
-      <span class="ellipsis"><i class="fas fa-ellipsis-v"></i></span>
+      <span class="span-text class-${todo.index} "> ${todo.description} </span>
+      <span class="ellipsis ml-auto "><i class="fas fa-ellipsis-v"></i></span>
       </li>`;
     } else {
       li.innerHTML = `<li class="list-group-item ">
