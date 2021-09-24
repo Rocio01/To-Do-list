@@ -1,5 +1,7 @@
 import ToDo from './todo';
-import { addTodoLs, getTodosls, updateTodosLs } from './storage';
+import {
+  addTodoLs, getTodosls, updateTodosLs, deleteTodoLS,
+} from './storage';
 import displayTodos from './display';
 
 const input = document.querySelector('#add-todo-input');
@@ -11,6 +13,7 @@ const loadEventListeners = () => {
 
   const checkboxes = document.querySelectorAll('.check');
   const spans = document.querySelectorAll('.span-text');
+  const ellipsis = document.querySelectorAll('.ellipsis');
 
   form.addEventListener('submit', () => {
     const description = input.value;
@@ -63,6 +66,31 @@ const loadEventListeners = () => {
             window.location.reload();
           }
         };
+      }
+    });
+  });
+
+  ellipsis.forEach((ellipsy) => {
+    // ellipsy.parentElement.addEventListener("mouseover", function(){
+    //   this.style.background = "beige"
+    // })
+
+    ellipsy.addEventListener('click', () => {
+      ellipsy.firstChild.style.display = 'none';
+      const spanDelete = document.createElement('span');
+      const deleteIcon = document.createElement('i');
+      deleteIcon.className = 'far fa-trash-alt delete-right';
+      spanDelete.appendChild(deleteIcon);
+
+      ellipsy.parentElement.appendChild(spanDelete);
+
+      if (deleteIcon !== null) {
+        spanDelete.addEventListener('click', function () {
+          const ind = this.previousElementSibling.previousElementSibling.previousElementSibling.id;
+          const todo = toDosArr.find((x) => (x.index) === Math.floor(ind));
+          deleteTodoLS(todo);
+          window.location.reload();
+        });
       }
     });
   });
