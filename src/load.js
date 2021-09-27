@@ -72,7 +72,7 @@ const loadEventListeners = () => {
   });
 
   ellipsis.forEach((ellipsy) => {
-    const spanDelete = document.createElement('div');
+    const spanDelete = document.createElement('span');
     spanDelete.className = 'span-delete';
     const deleteIcon = document.createElement('i');
     deleteIcon.className = 'far fa-trash-alt delete-right';
