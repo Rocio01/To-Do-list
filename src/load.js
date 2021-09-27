@@ -53,7 +53,8 @@ const loadEventListeners = () => {
 
       editForm.addEventListener('submit', function () {
         const newDescription = inputEdit.value;
-        const indexC = this.parentElement.previousElementSibling.previousElementSibling.id;
+        const p = this.parentElement.previousElementSibling.previousElementSibling;
+        const indexC = p.previousElementSibling.previousElementSibling.id;
         const todo = toDosArr.find((x) => (x.index) === Math.floor(indexC));
         ToDo.changeDescription(todo, newDescription);
         updateTodosLs(todo);
@@ -71,7 +72,7 @@ const loadEventListeners = () => {
   });
 
   ellipsis.forEach((ellipsy) => {
-    const spanDelete = document.createElement('span');
+    const spanDelete = document.createElement('div');
     spanDelete.className = 'span-delete';
     const deleteIcon = document.createElement('i');
     deleteIcon.className = 'far fa-trash-alt delete-right';
@@ -92,12 +93,12 @@ const loadEventListeners = () => {
       ellipsy.parentElement.style.background = '#f9ecc5';
 
       if (deleteIcon !== null) {
-        spanDelete.addEventListener('click', function () {
+        spanDelete.onclick = function () {
           const ind = this.previousElementSibling.previousElementSibling.previousElementSibling.id;
           const todo = toDosArr.find((x) => (x.index) === Math.floor(ind));
           deleteTodoLS(todo);
           window.location.reload();
-        });
+        };
       }
     });
   });
