@@ -18,7 +18,7 @@ const displayTodos = (arr) => {
       <span class="ellipsis ml-auto "><i class="fas fa-ellipsis-v"></i></span>
       </li>`;
     } else {
-      li.innerHTML = `<li class="list-group-item ">
+      li.innerHTML = `<li class="list-group-item  class-${todo.index}">
       <input class="form-check-input me-1 check" id="${todo.index}" type="checkbox"  value="" onClick="window.location.reload()">
       <span class="span-text"> ${todo.description} </span>
       <span class="ellipsis"><i class="fas fa-ellipsis-v"></i></span>

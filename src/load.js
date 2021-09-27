@@ -53,7 +53,8 @@ const loadEventListeners = () => {
 
       editForm.addEventListener('submit', function () {
         const newDescription = inputEdit.value;
-        const indexC = this.parentElement.previousElementSibling.previousElementSibling.id;
+        const p = this.parentElement.previousElementSibling.previousElementSibling;
+        const indexC = p.previousElementSibling.previousElementSibling.id;
         const todo = toDosArr.find((x) => (x.index) === Math.floor(indexC));
         ToDo.changeDescription(todo, newDescription);
         updateTodosLs(todo);
