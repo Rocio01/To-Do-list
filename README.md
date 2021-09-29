@@ -32,6 +32,8 @@ To get a local copy up and running follow these simple example steps.
 - run `npm install`
 - run`npm run start` to open a live server in your preferred browser
 
+### Test
+- run `npm test`
 
 ### Usage
 
