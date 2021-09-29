@@ -49,12 +49,12 @@ describe('displayTodos function', () => {
 
   test('Displays the correct description', () => {
     const firstDescription = document.querySelector('.span-text');
-    expect(firstDescription.innerHTML).toEqual(" 1 ");
+    expect(firstDescription.innerHTML).toEqual(' 1 ');
   });
 
   test('Displays the correct description', () => {
     const firstDescription = document.querySelector('.span-text');
-    expect(firstDescription.innerHTML).not.toEqual(" 2 ");
+    expect(firstDescription.innerHTML).not.toEqual(' 2 ');
   });
 
   test('Displays the checked attribute when the todo is completed = true', () => {
@@ -62,10 +62,8 @@ describe('displayTodos function', () => {
     expect(firstCheckbox.checked).toEqual(true);
   });
 
-  
   test('Only Displays the checked attribute when the todo is completed = true', () => {
     const firstCheckbox = document.querySelector('.form-check-input');
     expect(firstCheckbox.checked).not.toEqual(false);
   });
-
 });
