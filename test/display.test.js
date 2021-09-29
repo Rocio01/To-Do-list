@@ -5,7 +5,7 @@
 import displayTodos from '../src/display';
 
 describe('displayTodos function', () => {
-  const arr = [{ description: '1', completed: false, index: 0 }, { description: '2', completed: true, index: 1 }];
+  const arr = [{ description: '1', completed: true, index: 0 }, { description: '2', completed: false, index: 1 }];
 
   document.body.innerHTML = ` <ul class="list-container p-5">
   <li class="list-group-item"><h6 class="h6">Today's To Do</h6></li>
@@ -46,4 +46,26 @@ describe('displayTodos function', () => {
     const checkInputs = document.getElementsByClassName('form-check-input');
     expect(checkInputs.length).toBe(2);
   });
+
+  test('Displays the correct description', () => {
+    const firstDescription = document.querySelector('.span-text');
+    expect(firstDescription.innerHTML).toEqual(" 1 ");
+  });
+
+  test('Displays the correct description', () => {
+    const firstDescription = document.querySelector('.span-text');
+    expect(firstDescription.innerHTML).not.toEqual(" 2 ");
+  });
+
+  test('Displays the checked attribute when the todo is completed = true', () => {
+    const firstCheckbox = document.querySelector('.form-check-input');
+    expect(firstCheckbox.checked).toEqual(true);
+  });
+
+  
+  test('Only Displays the checked attribute when the todo is completed = true', () => {
+    const firstCheckbox = document.querySelector('.form-check-input');
+    expect(firstCheckbox.checked).not.toEqual(false);
+  });
+
 });
