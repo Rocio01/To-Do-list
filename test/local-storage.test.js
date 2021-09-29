@@ -1,5 +1,5 @@
 import {
-  addTodoLs, getTodosls, updateTodosLs, deleteTodoLS, clearLs,
+  addTodoLs, getTodosls, deleteTodoLS,
 } from '../src/storage';
 
 class LocalStorageMock {
