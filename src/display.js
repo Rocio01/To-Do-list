@@ -1,5 +1,6 @@
-const listContainer = document.querySelector('.list-container');
+
 const displayTodos = (arr) => {
+  const listContainer = document.querySelector('.list-container');
   const divButton = document.createElement('div');
   divButton.className = 'd-grid gap-2';
   const clearButton = document.createElement('button');
