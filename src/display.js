@@ -1,4 +1,3 @@
-
 const displayTodos = (arr) => {
   const listContainer = document.querySelector('.list-container');
   const divButton = document.createElement('div');
