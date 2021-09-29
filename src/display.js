@@ -1,5 +1,4 @@
 const listContainer = document.querySelector('.list-container');
-
 const displayTodos = (arr) => {
   const divButton = document.createElement('div');
   divButton.className = 'd-grid gap-2';
@@ -12,7 +11,7 @@ const displayTodos = (arr) => {
     const li = document.createElement('li');
     li.className = 'list-item-todo ';
     if (todo.completed === true) {
-      li.innerHTML = `<li class="list-group-item text-decoration-line-through class-${todo.index} ">
+      li.innerHTML = `<li class="list-group-item text-decoration-line-through class-${todo.index}  ">
       <input class="form-check-input me-1 check " id="${todo.index}" type="checkbox"  checked value="" onClick="window.location.reload()" >
       <span class="span-text class-${todo.index} "> ${todo.description} </span>
       <span class="ellipsis ml-auto "><i class="fas fa-ellipsis-v"></i></span>
@@ -28,7 +27,7 @@ const displayTodos = (arr) => {
     listContainer.appendChild(li);
   });
 
-  if (document.querySelector('.list-item-todo') !== null) {
+  if (document.querySelector('.list-item-todo')) {
     listContainer.appendChild(divButton);
   }
 };

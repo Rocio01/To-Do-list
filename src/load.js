@@ -3,6 +3,9 @@ import {
   addTodoLs, getTodosls, updateTodosLs, deleteTodoLS, clearLs,
 } from './storage';
 import displayTodos from './display';
+import {
+  edit, updateDescriptionDom, hideEditFormDom, hideDeleteIconDom, hideEllipsyIconDom,
+} from './dom';
 
 const input = document.querySelector('#add-todo-input');
 const form = document.querySelector('#add-todo');
@@ -36,35 +39,24 @@ const loadEventListeners = () => {
   });
 
   spans.forEach((span) => {
-    const oldDescription = span.textContent;
-
-    span.addEventListener('click', function (e) {
-      this.style.display = 'none';
+    span.addEventListener('click', (e) => {
       const newSpan = document.createElement('span');
       const editForm = document.createElement('form');
+      editForm.className = 'edit-form';
       const inputEdit = document.createElement('input');
-      inputEdit.type = 'text';
-      inputEdit.placeholder = oldDescription;
-      inputEdit.className = 'edit-form';
-      inputEdit.required = true;
-      editForm.appendChild(inputEdit);
       newSpan.appendChild(editForm);
+
+      edit(span, newSpan, editForm, inputEdit);
       (e.target.parentElement).appendChild(newSpan);
 
-      editForm.addEventListener('submit', function () {
-        const newDescription = inputEdit.value;
-        const p = this.parentElement.previousElementSibling.previousElementSibling;
-        const indexC = p.previousElementSibling.previousElementSibling.id;
-        const todo = toDosArr.find((x) => (x.index) === Math.floor(indexC));
-        ToDo.changeDescription(todo, newDescription);
-        updateTodosLs(todo);
+      editForm.addEventListener('submit', () => {
+        updateDescriptionDom(inputEdit, editForm, toDosArr);
       });
 
-      if (newSpan !== null) {
+      if (newSpan) {
         window.onclick = function (e) {
           if (newSpan !== e.target && span !== e.target && inputEdit !== e.target) {
-            newSpan.style.display = 'none';
-            window.location.reload();
+            hideEditFormDom(newSpan);
           }
         };
       }
@@ -81,18 +73,13 @@ const loadEventListeners = () => {
     spanDelete.style.display = 'none';
 
     ellipsy.parentElement.addEventListener('mouseleave', () => {
-      spanDelete.style.display = 'none';
-      ellipsy.firstChild.style.display = 'block';
-      ellipsy.parentElement.style.background = 'white';
+      hideDeleteIconDom(spanDelete, ellipsy);
     });
 
     ellipsy.parentElement.addEventListener('mouseenter', () => {
-      ellipsy.firstChild.style.display = 'none';
-      spanDelete.style.display = 'block';
+      hideEllipsyIconDom(ellipsy, spanDelete);
 
-      ellipsy.parentElement.style.background = '#f9ecc5';
-
-      if (deleteIcon !== null) {
+      if (deleteIcon) {
         spanDelete.onclick = function () {
           const ind = this.previousElementSibling.previousElementSibling.previousElementSibling.id;
           const todo = toDosArr.find((x) => (x.index) === Math.floor(ind));
@@ -104,7 +91,7 @@ const loadEventListeners = () => {
   });
 
   const clear = document.querySelector('.clear');
-  if (clear !== null) {
+  if (clear) {
     clear.addEventListener('mouseenter', function () {
       this.className = 'underline';
     });
