@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { hideEllipsyIconDom, hideDeleteIconDom } from '../src/dom';
+import { hideEllipsyIconDom, hideDeleteIconDom, edit } from '../src/dom';
 import displayTodos from '../src/display';
 
 const arr = [{ description: '1', completed: true, index: 0 }, { description: '2', completed: false, index: 1 }];
@@ -42,6 +42,8 @@ describe(' hideEllipsyIconDom', () => {
     expect(ellipsy.parentElement.style.background).toEqual('rgb(249, 236, 197)');
   });
 });
+
+
 describe(' hideDeleteIconDom', () => {
   test('Correctly changes background color white', () => {
     hideDeleteIconDom(spanDelete, ellipsy);
@@ -58,3 +60,26 @@ describe(' hideDeleteIconDom', () => {
     expect(spanDelete.style.display).toEqual('none');
   });
 });
+
+const span = document.querySelector(".span-text")
+const newSpan = document.createElement('span');
+const editForm = document.createElement('form');
+editForm.className = 'edit-form';
+const inputEdit = document.createElement('input');
+newSpan.appendChild(editForm);
+
+
+describe(' hideDeleteIconDom', () => {
+ test('Correct dissapearance of the  span with the todo description', () => {
+  edit(span, newSpan, editForm, inputEdit);
+  expect(span.style.display).toEqual("none");
+  
+ })
+
+ test('Correct text appeareance for the edit form', () => {
+  edit(span, newSpan, editForm, inputEdit);
+  expect(inputEdit.placeholder ).toEqual(" 1 ");
+  
+ })
+ 
+})
