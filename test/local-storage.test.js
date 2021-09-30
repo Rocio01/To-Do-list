@@ -66,7 +66,12 @@ describe('clearLs', () => {
   test('Retrieves the correct number of object in the lS', () => {
     clearLs();
     const todos = getTodosls();
-    expect(todos.length).toEqual(2);  
+    expect(todos.length).toEqual(2);
   });
 
+  test('Retrieves only the non-completed tasks', () => {
+    clearLs();
+    const todos = getTodosls();
+    expect(todos.length).not.toEqual(4);
+  });
 });
