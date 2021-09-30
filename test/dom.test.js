@@ -43,7 +43,6 @@ describe(' hideEllipsyIconDom', () => {
   });
 });
 
-
 describe(' hideDeleteIconDom', () => {
   test('Correctly changes background color white', () => {
     hideDeleteIconDom(spanDelete, ellipsy);
@@ -61,25 +60,21 @@ describe(' hideDeleteIconDom', () => {
   });
 });
 
-const span = document.querySelector(".span-text")
+const span = document.querySelector('.span-text');
 const newSpan = document.createElement('span');
 const editForm = document.createElement('form');
 editForm.className = 'edit-form';
 const inputEdit = document.createElement('input');
 newSpan.appendChild(editForm);
 
-
 describe(' hideDeleteIconDom', () => {
- test('Correct dissapearance of the  span with the todo description', () => {
-  edit(span, newSpan, editForm, inputEdit);
-  expect(span.style.display).toEqual("none");
-  
- })
+  test('Correct dissapearance of the  span with the todo description', () => {
+    edit(span, newSpan, editForm, inputEdit);
+    expect(span.style.display).toEqual('none');
+  });
 
- test('Correct text appeareance for the edit form', () => {
-  edit(span, newSpan, editForm, inputEdit);
-  expect(inputEdit.placeholder ).toEqual(" 1 ");
-  
- })
- 
-})
+  test('Correct text appeareance for the edit form', () => {
+    edit(span, newSpan, editForm, inputEdit);
+    expect(inputEdit.placeholder).toEqual(' 1 ');
+  });
+});
