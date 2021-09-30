@@ -93,10 +93,18 @@ describe('updateTodosLs', () => {
   localStorage.clear();
   const testTodo = { description: 'testTodo', completed: false };
   addTodoLs(testTodo);
+
   test('Retrieves the correct object from local storage', () => {
     const todoModified = { description: 'I am modified', completed: false, index: 0 };
     updateTodosLs(todoModified);
     const todos = getTodosls();
     expect(todos).toEqual([{ description: 'I am modified', completed: false, index: 0 }]);
+  });
+
+  test('Does not retreive the original object', () => {
+    const todoModified = { description: 'I am modified', completed: false, index: 0 };
+    updateTodosLs(todoModified);
+    const todos = getTodosls();
+    expect(todos).not.toEqual([{ description: 'testTodo', completed: false, index: 0 }]);
   });
 });
