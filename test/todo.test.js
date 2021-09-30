@@ -43,18 +43,17 @@ describe(ToDo, () => {
     expect(thirdTodo).not.toEqual({ description: 'third task', completed: true });
   });
 
-  test('test', () => {
-    const fourthTodo = new ToDo('third task', true);
+  test('the correct change of the description', () => {
+    const fourthTodo = new ToDo('fourth task', true);
     ToDo.changeDescription(fourthTodo, 'newDescription');
-    // ToDo.changeStatus(fourthTodo);
     expect(fourthTodo).toEqual({ description: 'newDescription', completed: true });
   });
+
+  test('Test for non equality in change description method', () => {
+    const fiveTodo = new ToDo('five task', true);
+    ToDo.changeDescription(fiveTodo, 'newDescription');
+    expect(fiveTodo).not.toEqual({ description: 'five task', completed: true });
+  });
+
 });
 
-// static changeStatus(todo) {
-//   todo.completed = !todo.completed;
-// }
-
-// static changeDescription(todo, newDescription) {
-//   todo.description = newDescription;
-// }
