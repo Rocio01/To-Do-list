@@ -1,5 +1,5 @@
 import {
-  addTodoLs, getTodosls, deleteTodoLS,
+  addTodoLs, getTodosls, deleteTodoLS, updateTodosLs, clearLs,
 } from '../src/storage';
 
 class LocalStorageMock {
@@ -42,17 +42,27 @@ describe('addTodoLs', () => {
 });
 
 describe('deleteTodoLS', () => {
-  const second = { description: 'It deletes an item from the array' };
+  const second = { description: 'It deletes an item from the array', completed: false};
   addTodoLs(second);
 
   deleteTodoLS({ description: 'test', index: 0 });
   const todos = getTodosls();
 
   test('Delete todo from localStorage ', () => {
-    expect(todos).toEqual([{ description: 'It deletes an item from the array', index: 1 }]);
+    expect(todos).toEqual([{ description: 'It deletes an item from the array', completed: false, index: 1 }]);
   });
 
   test('Retrieves the correct element after delete ', () => {
     expect(todos).not.toEqual([{ description: 'test', index: 0 }, { description: 'It deletes an item from the array', index: 1 }]);
   });
 });
+
+describe('clearLs', () => {
+ const  third =  {description: "3", completed: false};
+ const  fourth =  {description: "4", completed: true};
+ addTodoLs(third);
+ addTodoLs(fourth);
+ clearLs();
+ const todos = getTodosls();
+ expect(todos.length).toEqual(2)
+})
