@@ -62,7 +62,11 @@ describe('clearLs', () => {
   const fourth = { description: '4', completed: true };
   addTodoLs(third);
   addTodoLs(fourth);
-  clearLs();
-  const todos = getTodosls();
-  expect(todos.length).toEqual(2);
+
+  test('Retrieves the correct number of object in the lS', () => {
+    clearLs();
+    const todos = getTodosls();
+    expect(todos.length).toEqual(2);  
+  });
+
 });
