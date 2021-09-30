@@ -26,8 +26,26 @@ describe(ToDo, () => {
     expect(arr.length).toBe(0);
   });
 
-  test('', () => {
+  test('Correct deletion of the object inside the array', () => {
     ToDo.deleteToDo(firstTodo, arr);
     expect(arr.length).not.toBe(1);
   });
+
+  test('The correct change of completed attribute', () => {
+    const secondTodo = new ToDo('second task', true);
+    ToDo.changeStatus(secondTodo);
+    expect(secondTodo).toEqual({ description: 'second task', completed: false })
+  })
+  
+
+
 });
+
+
+// static changeStatus(todo) {
+//   todo.completed = !todo.completed;
+// }
+
+// static changeDescription(todo, newDescription) {
+//   todo.description = newDescription;
+// }
