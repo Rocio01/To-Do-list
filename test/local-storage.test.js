@@ -42,7 +42,7 @@ describe('addTodoLs', () => {
 });
 
 describe('deleteTodoLS', () => {
-  const second = { description: 'It deletes an item from the array', completed: false};
+  const second = { description: 'It deletes an item from the array', completed: false };
   addTodoLs(second);
 
   deleteTodoLS({ description: 'test', index: 0 });
@@ -58,11 +58,11 @@ describe('deleteTodoLS', () => {
 });
 
 describe('clearLs', () => {
- const  third =  {description: "3", completed: false};
- const  fourth =  {description: "4", completed: true};
- addTodoLs(third);
- addTodoLs(fourth);
- clearLs();
- const todos = getTodosls();
- expect(todos.length).toEqual(2)
-})
+  const third = { description: '3', completed: false };
+  const fourth = { description: '4', completed: true };
+  addTodoLs(third);
+  addTodoLs(fourth);
+  clearLs();
+  const todos = getTodosls();
+  expect(todos.length).toEqual(2);
+});
