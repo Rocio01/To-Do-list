@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { hideEllipsyIconDom } from '../src/dom';
+import { hideEllipsyIconDom, hideDeleteIconDom } from '../src/dom';
 import displayTodos from '../src/display';
 
 const arr = [{ description: '1', completed: true, index: 0 }, { description: '2', completed: false, index: 1 }];
@@ -27,19 +27,34 @@ spanDelete.appendChild(deleteIcon);
 spanDelete.style.display = 'none';
 
 describe(' hideEllipsyIconDom', () => {
-    test('Correct disappearance of the ellipsy icon from the dom', () => {
-        hideEllipsyIconDom(ellipsy, spanDelete);
-        expect(ellipsy.firstChild.style.display).toEqual('none');
-    });
+  test('Correct disappearance of the ellipsy icon from the dom', () => {
+    hideEllipsyIconDom(ellipsy, spanDelete);
+    expect(ellipsy.firstChild.style.display).toEqual('none');
+  });
 
-    test('Correct appearance of the trash icon from the dom', () => {
-        hideEllipsyIconDom(ellipsy, spanDelete);
-        expect(spanDelete.style.display).toEqual('block');
-    });
+  test('Correct appearance of the trash icon from the dom', () => {
+    hideEllipsyIconDom(ellipsy, spanDelete);
+    expect(spanDelete.style.display).toEqual('block');
+  });
 
-    test('Correct change of the background color', () => {
-        hideEllipsyIconDom(ellipsy, spanDelete);
-        expect(ellipsy.parentElement.style.background).toEqual("rgb(249, 236, 197)");
-    });
+  test('Correct change of the background color', () => {
+    hideEllipsyIconDom(ellipsy, spanDelete);
+    expect(ellipsy.parentElement.style.background).toEqual('rgb(249, 236, 197)');
+  });
+});
+describe(' hideDeleteIconDom', () => {
+  test('Correctly changes background color white', () => {
+    hideDeleteIconDom(spanDelete, ellipsy);
+    expect(ellipsy.parentElement.style.background).toEqual('white');
+  });
 
+  test('Correctly changes style to display: block', () => {
+    hideDeleteIconDom(spanDelete, ellipsy);
+    expect(ellipsy.firstChild.style.display).toEqual('block');
+  });
+
+  test('Correctly changes style to display: none', () => {
+    hideDeleteIconDom(spanDelete, ellipsy);
+    expect(spanDelete.style.display).toEqual('none');
+  });
 });
