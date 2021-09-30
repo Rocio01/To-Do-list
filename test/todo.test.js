@@ -54,6 +54,4 @@ describe(ToDo, () => {
     ToDo.changeDescription(fiveTodo, 'newDescription');
     expect(fiveTodo).not.toEqual({ description: 'five task', completed: true });
   });
-
 });
-
