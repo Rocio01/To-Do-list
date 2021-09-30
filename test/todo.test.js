@@ -37,7 +37,7 @@ describe(ToDo, () => {
         expect(secondTodo).toEqual({ description: 'second task', completed: false });
     })
 
-    test('The correct opposite change of completed attribute', () => {
+    test('Test for non equality in change status method', () => {
         const thirdTodo = new ToDo('third task', true);
         ToDo.changeStatus(thirdTodo);
         expect(thirdTodo).not.toEqual({ description: 'third task', completed: true });
