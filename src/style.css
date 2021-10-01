@@ -2,3 +2,30 @@ ul {
   list-style: none;
   color: rgb(46, 46, 46);
 }
+
+.ellipsis,
+.span-delete {
+  float: right;
+}
+
+.span-text {
+  width: 100px;
+}
+
+.delete {
+  display: none;
+}
+
+.delete-right {
+  float: right;
+}
+
+.clear {
+  text-decoration: none;
+  border: blanchedalmond;
+}
+
+.underline {
+  text-decoration: underline;
+  border: blanchedalmond;
+}
