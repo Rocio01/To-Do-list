@@ -1,5 +1,9 @@
 import {
-  addTodoLs, getTodosls, deleteTodoLS,
+  addTodoLs,
+  getTodosls,
+  deleteTodoLS,
+  updateTodosLs,
+  clearLs,
 } from '../src/storage';
 
 class LocalStorageMock {
@@ -26,6 +30,13 @@ class LocalStorageMock {
 
 global.localStorage = new LocalStorageMock();
 
+describe('getTodosls', () => {
+  const todos = getTodosls();
+  test('Retrieve an object from local storage', () => {
+    expect(typeof todos).toBe('object');
+  });
+});
+
 describe('addTodoLs', () => {
   const first = { description: 'test' };
   addTodoLs(first);
@@ -42,17 +53,63 @@ describe('addTodoLs', () => {
 });
 
 describe('deleteTodoLS', () => {
-  const second = { description: 'It deletes an item from the array' };
+  const second = { description: 'It deletes an item from the array', completed: true };
   addTodoLs(second);
 
   deleteTodoLS({ description: 'test', index: 0 });
   const todos = getTodosls();
 
   test('Delete todo from localStorage ', () => {
-    expect(todos).toEqual([{ description: 'It deletes an item from the array', index: 1 }]);
+    expect(todos).toEqual([{ description: 'It deletes an item from the array', completed: true, index: 1 }]);
   });
 
   test('Retrieves the correct element after delete ', () => {
     expect(todos).not.toEqual([{ description: 'test', index: 0 }, { description: 'It deletes an item from the array', index: 1 }]);
+  });
+});
+
+describe('clearLs', () => {
+  const third = { description: '3', completed: false };
+  const fourth = { description: '4', completed: true };
+  addTodoLs(third);
+  addTodoLs(fourth);
+
+  test('Retrieves the correct number of object in the lS', () => {
+    clearLs();
+    const todos = getTodosls();
+    expect(todos.length).toEqual(1);
+  });
+
+  test('Retrieves only the non-completed tasks', () => {
+    clearLs();
+    const todos = getTodosls();
+    expect(todos.length).not.toEqual(4);
+  });
+});
+
+describe('updateTodosLs', () => {
+  localStorage.clear();
+  const testTodo = { description: 'testTodo', completed: false };
+  addTodoLs(testTodo);
+
+  test('Retrieves the correct object from local storage', () => {
+    const todoModified = { description: 'I am modified', completed: false, index: 0 };
+    updateTodosLs(todoModified);
+    const todos = getTodosls();
+    expect(todos).toEqual([{ description: 'I am modified', completed: false, index: 0 }]);
+  });
+
+  test('Does not retreive the original object', () => {
+    const todoModified = { description: 'I am modified', completed: false, index: 0 };
+    updateTodosLs(todoModified);
+    const todos = getTodosls();
+    expect(todos).not.toEqual([{ description: 'testTodo', completed: false, index: 0 }]);
+  });
+
+  test('Retreives and returns correct completion status', () => {
+    const todoCompleted = { description: 'I am completed', completed: true, index: 0 };
+    updateTodosLs(todoCompleted);
+    const todos = getTodosls();
+    expect(todos).toEqual([{ description: 'I am completed', completed: true, index: 0 }]);
   });
 });

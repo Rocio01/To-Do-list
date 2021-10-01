@@ -17,6 +17,11 @@ describe('displayTodos function', () => {
 
   displayTodos(arr);
 
+  test('A -clear completed button- gets added when the list is populated', () => {
+    const clearButton = document.querySelector('.clear');
+    expect(clearButton).toBeTruthy();
+  });
+
   test('A li element with the class list-item-todo exists', () => {
     const listItem = document.querySelector('.list-item-todo');
     expect(listItem).toBeTruthy();
