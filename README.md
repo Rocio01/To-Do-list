@@ -5,7 +5,7 @@
 > A simple HTML list of To Do tasks.
 > This simple web page will be built using webpack and served by a webpack dev server.
 
-
+![screenshot](./image.PNG)
 
 ## Built With
 
@@ -14,6 +14,10 @@
 - JavaScript
 - Webpack
 - Bootstrap
+  
+## Live Demo
+
+[Live Demo Link](https://rocio01.github.io/To-Do-list/)
 
 
 
